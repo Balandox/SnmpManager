@@ -1,0 +1,50 @@
+version: '3.3'
+
+services:
+  snmp-simulator:
+    image: xeemetric/snmp-simulator
+    ports:
+      - "161:161/udp"
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres:13.3
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Semen22141123
+      - POSTGRES_DB=metrics_db
+    volumes:
+      - /var/lib/postgresql/data:/var/lib/postgresql/data #Директория БД.
+      - /var/log/postgresql:/var/log/postgresql #log файл
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+  snmp-manager:
+    container_name: snmp-manager
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DB_URL=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=Semen22141123
+    image: balandox/snmp-manager
+    links:
+      - snmp-simulator
+      - postgres
+    ports:
+      - "165:165/udp"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+
+
+

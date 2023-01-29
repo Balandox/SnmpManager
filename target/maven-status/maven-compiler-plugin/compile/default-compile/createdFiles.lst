@@ -1,0 +1,6 @@
+org\suai\snmp\dao\MetricsDAO.class
+org\suai\snmp\models\SnmpManager.class
+org\suai\snmp\config\SpringConfig.class
+org\suai\snmp\tasks\SaveTask.class
+org\suai\snmp\models\Metrics.class
+org\suai\snmp\Main.class
