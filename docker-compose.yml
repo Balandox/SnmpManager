@@ -12,7 +12,7 @@ services:
     image: postgres:13.3
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Semen22141123
+      - POSTGRES_PASSWORD=<your_password>
       - POSTGRES_DB=metrics_db
     volumes:
       - /var/lib/postgresql/data:/var/lib/postgresql/data #Директория БД.
