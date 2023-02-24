@@ -48,11 +48,6 @@ public class SpringConfig{
         dataSource.setUsername(env.getRequiredProperty("hibernate.connection.username"));
         dataSource.setPassword(env.getRequiredProperty("hibernate.connection.password"));
 
-/*        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/metrics_db");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("Semen22141123");*/
-
         return dataSource;
     }
 
@@ -61,9 +56,6 @@ public class SpringConfig{
         properties.put("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
 
-/*        properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        properties.put("hibernate.show_sql", true);*/
-
         return properties;
     }
 
@@ -71,7 +63,6 @@ public class SpringConfig{
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-/*        sessionFactory.setPackagesToScan("org.suai.snmp.models");*/
         sessionFactory.setHibernateProperties(hibernateProperties());
         sessionFactory.setAnnotatedClasses(Metrics.class);
 
